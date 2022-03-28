@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Notice</title>
+    <style>
+    .background{
+        background-image: url(../static/Images/play-with-notices.jpg);
+        background-size: cover;
+    }
+    .heading{
+        text-align: center;
+        color: rgb(4, 5, 71);
+    }
+    .form{
+        max-width: 30%;
+        margin: 25px auto;
+    }
+    .form input{
+        margin: 10px 0;
+        width: 100%;
+        font-size: 14px;
+        border: 2px solid grey;
+        border-radius: 6px;
+        padding: 3px;
+    }
+    </style>
+
+</head>
+<body class="background">
+    <div class="heading">
+        <h1><b>Add Notice</b></h1>
+    </div>
+    <div class="form">
+        <input type="text" name="notice" id="notice" placeholder="Enter notice heading">
+        <input type="text" name="date" id="date" placeholder="yyyy-MM-dd">
+        <input type="text" name="description" id="description" placeholder="Enter description">
+        <input type="submit" value="Submit" onclick="SubmitF()">
+    </div>
+</body>
+</html>

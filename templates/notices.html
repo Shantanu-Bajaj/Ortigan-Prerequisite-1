@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayWithNotices </title>
+    <style>
+    .backg{
+        background-image: url(../static/Images/play-with-notices.jpg);
+        background-size: cover;
+    }
+    .head{
+        text-align: center;
+        color: rgb(255, 0, 0)
+    }
+    .btn{
+        padding: 10px 20px;
+        margin: 50px 500px;
+        /* border: 2px solid white; */
+        /* border-radius: 8px; */
+        background: none;
+        color: white;
+        cursor: pointer;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 15px;
+        padding-left: 115px;
+    }
+    </style>
+</head>
+<body class="backg">
+    <div class="head">
+        <h1>What do you want to do?</h1>
+    </div>
+    <div class= "btn">
+        <button><a href = "http://127.0.0.1:5000/add-notice">Add Notice</a></button><br><br>
+        <button><a href = "http://127.0.0.1:5000/update-notice">Update Notice</a></button><br><br>
+        <button><a href = "http://127.0.0.1:5000/delete-notice">Delete Notice</a></button>
+    </div>
+</body>
+</html>
