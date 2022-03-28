@@ -6,11 +6,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/sampledb'
 db = SQLAlchemy(app)
 
 class Notices(db.Model):
-    '''id date Name Description'''
-    id = db.Column(db.Integer, nullable = False)
-    date = db.Column(db.String, nullable = False)
+    date = db.Column(db.String, primary_key = True)
     Name = db.Column(db.String, nullable = False)
-    Description = db.Column(db.String, primary_key=True)
+    Description = db.Column(db.String, nullable = False)
 
 @app.route("/")
 def index():
@@ -22,7 +20,13 @@ def play_with_notices():
 
 @app.route("/add-notice", methods =['GET','POST'])
 def add_notice():
-    
+    if request.method == 'POST':
+        DATE = request.form.get('date')
+        NAME = request.form.get('name')
+        DESC = request.form.get('description')
+        data = Notices(date = DATE, Name = NAME, Description = DESC)
+        db.session.add(data)
+        db.session.commit()
     return render_template('add-notice.html')
 
 @app.route("/update-notice", methods =['GET','POST'])
