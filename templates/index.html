@@ -21,6 +21,7 @@
         background-repeat: no-repeat;
         background-position: center top;
     }
+    
     </style>
 </head>
 <body class="background">
@@ -30,11 +31,41 @@
     <div class="hyperlink">
         <a href = "http://127.0.0.1:5000/notices" target="_blank">Click here to play with notices!</a>
     </div>
-    <div>
-        <p>ID: {{ notices.date}}</p>
-        <p>ID: {{ notices.Name }}</p>
-        <p>ID: {{ notices.Description }}</p>
-    </div>
+    
+    <table border="3" align="center">
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        {% for row in notices %}
+        <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.date}}</td>
+            <td>{{row.Name}}</td>
+            <td>{{row.Description}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+<!--    <table border="3" align="center">-->
+<!--        <tr>-->
+<!--            <th>Id</th>-->
+<!--            <th>Date</th>-->
+<!--            <th>Name</th>-->
+<!--            <th>Description</th>-->
+<!--        </tr>-->
+<!--        {% for row in Today_notices %}-->
+<!--        <tr>-->
+<!--            <td>{{row.id}}</td>-->
+<!--            <td>{{row.date}}</td>-->
+<!--            <td>{{row.Name}}</td>-->
+<!--            <td>{{row.Description}}</td>-->
+<!--        </tr>-->
+<!--        {% endfor %}-->
+<!--    </table>-->
+
 
 </body>
 </html>
