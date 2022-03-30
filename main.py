@@ -1,11 +1,8 @@
-from logging import FileHandler, WARNING
 from flask import Flask, render_template,request, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 
 app = Flask(__name__,template_folder="templates")
-file_handler = FileHandler('errorlog.txt')
-file_handler.setLevel(WARNING)
 app.secret_key = "Secret Key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/sampledb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -22,7 +19,8 @@ class Notices(db.Model):
 @app.route("/")
 def home():
     all_data = Notices.query.all()
-    return render_template('index.html',notices = all_data)
+    today_data = Notices.query.filter_by(date=today.strftime("%Y-%m-%d"))
+    return render_template('index.html',notices = all_data,Today_notices = today_data)
 
 @app.route("/notices", methods =['GET','POST'])
 def play_with_notices():

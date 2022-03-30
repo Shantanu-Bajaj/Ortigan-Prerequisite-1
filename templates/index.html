@@ -48,6 +48,22 @@
         </tr>
         {% endfor %}
     </table>
+    <table border="3" align="center">
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        {% for row in Today_notices %}
+        <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.date}}</td>
+            <td>{{row.Name}}</td>
+            <td>{{row.Description}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
 
 </body>
