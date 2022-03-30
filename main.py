@@ -6,7 +6,7 @@ from datetime import date
 app = Flask(__name__,template_folder="templates")
 file_handler = FileHandler('errorlog.txt')
 file_handler.setLevel(WARNING)
-#app.secret_key = "Secret Key"
+app.secret_key = "Secret Key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/sampledb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -59,12 +59,10 @@ def update_notice():
 @app.route("/delete-notice", methods =['GET','POST'])
 def delete_notice():
     if request.method == 'POST':
-        #ID = request.form.get('id')
-        #data = Notices.query.get(id)
-        #db.session.delete(data)
-        #db.session.commit()
+        ID = request.form.get('noticeid')
+        Notices.query.filter_by(id=ID).delete()
+        db.session.commit()
         flash("Notice Deleted Successfully")
     return render_template('delete-notice.html')
-
 
 app.run(debug=True)
