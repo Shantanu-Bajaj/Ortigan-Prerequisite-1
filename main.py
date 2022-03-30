@@ -1,10 +1,14 @@
+from logging import FileHandler, WARNING
 from flask import Flask, render_template,request, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 
-app = Flask(__name__)
-app.secret_key = "Secret Key"
+app = Flask(__name__,template_folder="templates")
+file_handler = FileHandler('errorlog.txt')
+file_handler.setLevel(WARNING)
+#app.secret_key = "Secret Key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/sampledb'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 today = date.today()
@@ -16,12 +20,8 @@ class Notices(db.Model):
     Description = db.Column(db.String, nullable = False)
 
 @app.route("/")
-def index():
+def home():
     all_data = Notices.query.all()
-    '''today_data = Notices.query.get(request.form.get('date'))
-    for data in today_data:
-        if data.equals(today.strftime("%Y-%m-%d")):
-            return render_template('index.html', Today_notices = data)'''
     return render_template('index.html',notices = all_data)
 
 @app.route("/notices", methods =['GET','POST'])
@@ -44,12 +44,26 @@ def add_notice():
 @app.route("/update-notice", methods =['GET','POST'])
 def update_notice():
     if request.method== 'POST':
-        #data = Notices.query.get(request.form.get(''))
-        pass
+        ID = request.form.get('id')
+        NAME = request.form.get('noticename')
+        DATE = request.form.get('noticedate')
+        DESC =  request.form.get('noticedescription')
+        data = Notices.query.filter_by(id=ID).first()
+        data.Name = NAME
+        data.date = DATE
+        data.Description = DESC
+        db.session.commit()
+        flash("Notice Updated Successfully")
     return render_template('update-notice.html')
 
 @app.route("/delete-notice", methods =['GET','POST'])
 def delete_notice():
+    if request.method == 'POST':
+        #ID = request.form.get('id')
+        #data = Notices.query.get(id)
+        #db.session.delete(data)
+        #db.session.commit()
+        flash("Notice Deleted Successfully")
     return render_template('delete-notice.html')
 
 

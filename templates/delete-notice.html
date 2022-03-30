@@ -5,16 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Notice</title>
-    <link rel="stylesheet" href="delete-notice.css">
+    <style>
+    .background{
+        background-image: url(../static/Images/play-with-notices.jpg);
+        background-size: cover;
+    }
+    .heading{
+        text-align: center;
+        color: rgb(4, 5, 71);
+    }
+    .form{
+        max-width: 30%;
+        margin: 25px auto;
+    }
+    .form input{
+        margin: 10px 0;
+        width: 100%;
+        font-size: 14px;
+        border: 2px solid grey;
+        border-radius: 6px;
+        padding: 3px;
+    }
+
+    </style>
 </head>
 <body class="background">
     <div class="heading">
         <h1><b>Delete Notice</b></h1>
     </div>
-    <div class="form">
-        <input type="text" name="notice" id="notice" placeholder="Enter notice heading">
-        <input type="text" name="date" id="date" placeholder="yyyy-MM-dd">
-        <button>Delete</button>
-    </div> 
+    <form action="" method="post">
+        <div class="form">
+            <input type="text" name="id" id="notices" placeholder="Enter Id">
+            <input type="submit" value="Submit">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </form>
 </body>
 </html>

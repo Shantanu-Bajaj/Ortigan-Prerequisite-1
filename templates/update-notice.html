@@ -5,12 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Notice</title>
-    <link rel="stylesheet" href="update-notice.css">
+    <style>
+    .background{
+        background-image: url(../static/Images/play-with-notices.jpg);
+        background-size: cover;
+    }
+    .head{
+        text-align: center;
+        color: rgb(4, 5, 71);
+    }
+    .form{
+        max-width: 30%;
+        margin: 25px auto;
+    }
+    .form input{
+        margin: 10px 0;
+        width: 100%;
+        font-size: 14px;
+        border: 2px solid grey;
+        border-radius: 6px;
+        padding: 3px;
+    }
+    </style>
 </head>
 <body class="background">
     <div class="head">
         <h1>Update Notice</h1>
     </div>
-   
+    <form action="" method="POST">
+        <div class="form">
+            <input type="text" name="id" id="noticeid" placeholder="Enter notice id">
+            Enter new details
+            <input type="text" name="noticedate" id="noticedate" placeholder="Enter new notice date">
+            <input type="text" name="noticename" id="noticename" placeholder="Enter new notice name">
+            <input type="text" name="noticedescription" id="noticedescription" placeholder="Enter new notice description">
+            <input type="submit" value="Submit">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </form>
+
 </body>
 </html>
